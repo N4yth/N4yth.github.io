@@ -1,0 +1,25 @@
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  background: linear-gradient(to right, #667eea, #764ba2);
+  color: white;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  padding: 100px 20px;
+}
+
+.btn {
+  background: white;
+  color: #764ba2;
+  padding: 10px 20px;
+  border-radius: 20px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.btn:hover {
+  background: #eee;
+}
