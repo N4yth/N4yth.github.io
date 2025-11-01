@@ -1,23 +1,111 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ma Landing Page</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebtoonHub - Your Ultimate Webtoon Platform</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
-    <h1>Bienvenue sur ma Landing Page 🚀</h1>
-    <p>Une page simple hébergée sur GitHub Pages</p>
-    <a href="#contact" class="btn">Me contacter</a>
-  </header>
+    <nav class="nav">
+        <div class="logo">WebtoonHub</div>
+        <button class="nav-btn">Get Started</button>
+    </nav>
 
-  <section id="contact">
-    <h2>Contact</h2>
-    <p>Écris-moi à : <a href="mailto:exemple@mail.com">exemple@mail.com</a></p>
-  </section>
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <h1 class="floating">Discover, Track & Share Webtoons</h1>
+            <p>The ultimate platform for webtoon enthusiasts. Explore thousands of titles, manage your reading list, and connect with a vibrant community.</p>
+            <button class="cta-btn">Start Your Journey</button>
+        </div>
+    </section>
 
-  <script src="script.js"></script>
+    <section class="features">
+        <h2 class="section-title">Powerful Features</h2>
+        <p class="section-subtitle">Everything you need to enhance your webtoon experience</p>
+        
+        <div class="features-grid">
+            <div class="feature-card" data-feature="1">
+                <div class="feature-icon">🏠</div>
+                <h3>Comprehensive Hub</h3>
+                <p>Browse all webtoons in an intuitive card-based layout. Click on any title to dive deeper into detailed information, ratings, and more.</p>
+            </div>
+
+            <div class="feature-card" data-feature="2">
+                <div class="feature-icon">🔍</div>
+                <h3>Advanced Search</h3>
+                <p>Find exactly what you're looking for with powerful filters. Search by chapter count, ratings, title, author, genre, and multiple criteria simultaneously.</p>
+            </div>
+
+            <div class="feature-card" data-feature="3">
+                <div class="feature-icon">📚</div>
+                <h3>Personal Library</h3>
+                <p>Track your reading progress effortlessly. Organize webtoons you're reading, planning to read, or have completed. Your personalized library, always accessible.</p>
+            </div>
+
+            <div class="feature-card" data-feature="4">
+                <div class="feature-icon">✨</div>
+                <h3>Create & Contribute</h3>
+                <p>Can't find a webtoon? Add it yourself! Create entries for new releases or hidden gems. Your private collection grows with you.</p>
+            </div>
+
+            <div class="feature-card" data-feature="5">
+                <div class="feature-icon">🛡️</div>
+                <h3>Admin Moderation</h3>
+                <p>Quality-controlled content through admin review. Submit your creations for public approval, ensuring a safe and appropriate community environment.</p>
+            </div>
+
+            <div class="feature-card" data-feature="6">
+                <div class="feature-icon">🎨</div>
+                <h3>Rich Metadata</h3>
+                <p>Detailed information at your fingertips. Access comprehensive metadata, ratings, chapter counts, author details, and community reviews.</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <button class="modal-close" id="modalClose">×</button>
+            <h3 class="modal-title" id="modalTitle"></h3>
+            <p class="modal-description" id="modalDescription"></p>
+            <img class="modal-image" id="modalImage" src="" alt="Feature screenshot">
+        </div>
+    </div>
+    </section>
+
+    <section class="stats">
+        <h2 class="section-title">Join Our Community</h2>
+        <div class="stats-grid">
+            <div class="stat-item">
+                <div class="stat-number">10K+</div>
+                <div class="stat-label">Webtoons</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">50K+</div>
+                <div class="stat-label">Active Users</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">500K+</div>
+                <div class="stat-label">Reviews</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">24/7</div>
+                <div class="stat-label">Available</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <h2>Ready to Start Your Adventure?</h2>
+        <p>Join thousands of webtoon enthusiasts and discover your next favorite story today.</p>
+        <button class="cta-btn">Create Free Account</button>
+    </section>
+
+    <footer class="footer">
+        <p>&copy; 2025 WebtoonHub. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
