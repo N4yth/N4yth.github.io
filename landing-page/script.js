@@ -1,50 +1,137 @@
-const nav = document.querySelector('.nav');
-const featureCards = document.querySelectorAll('.feature-card');
+const navToggle = document.getElementById('navToggle');
+const navLinks = document.querySelector('.nav-links');
+
+navToggle.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+});
+
+document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+    });
+});
+
+let lastScroll = 0;
+const navbar = document.querySelector('.navbar');
+
+window.addEventListener('scroll', () => {
+    const currentScroll = window.pageYOffset;
+
+    if (currentScroll > 100) {
+        navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+        navbar.style.boxShadow = '0 4px 30px rgba(0, 0, 0, 0.15)';
+    } else {
+        navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+        navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+    }
+
+    lastScroll = currentScroll;
+});
+
 const modal = document.getElementById('modal');
-const modalClose = document.getElementById('modalClose');
 const modalTitle = document.getElementById('modalTitle');
 const modalDescription = document.getElementById('modalDescription');
 const modalImage = document.getElementById('modalImage');
+const modalClose = document.getElementById('modalClose');
+const featureCards = document.querySelectorAll('.feature-card');
 
-const featuresData = {
-    '1': {
+const featureDetails = {
+    1: {
         title: 'Comprehensive Hub',
-        description: 'Here we have the home page which serves as a hub for everyone. You can see all webtoons in card format which you can click on for more information.',
+        description: `Our webtoon hub is your gateway to discovering thousands of titles.
+        Click any webtoon card to explore synopsis, author information, genre tags, community ratings, and reading links.`,
         image: './images/Home.png'
     },
-    '2': {
+    2: {
         title: 'Advanced Search',
-        description: 'Here we have the advanced search page to allow users to search by chapter count, rating, title, author, etc.',
+        description: `Find your perfect webtoon with our powerful search system.
+        Our intelligent search algorithm ensures you discover exactly what you're looking for, whether it's a completed series or an ongoing adventure.`,
         image: './images/Search.png'
     },
-    '3': {
+    3: {
         title: 'Personal Library',
-        description: 'Here we have the library - a page allowing connected users to see webtoons they have read / are reading / have finished. By clicking on the card they can also access more information and edit content only they have access to.',
+        description: `Take control of your reading journey with our comprehensive library system.
+        Your library syncs across all devices, so you never lose track of where you left off.`,
         image: './images/Library.png'
     },
-    '4': {
+    4: {
         title: 'Create & Contribute',
-        description: 'Here is the webtoon creation page allowing you to create a webtoon that is not present on the site. This is useful for new releases or little-known works, and these saved webtoons will be private.',
+        description: `Be part of our growing database by adding new webtoons.
+        Can't find your favorite webtoon? Add it! Help other readers discover hidden gems and contribute to our community-driven database.`,
         image: './images/Create.png'
     },
-    '5': {
+    5: {
         title: 'Admin Moderation',
-        description: 'Here is the page for administrators. Webtoon creators who want to make their metadata public will need to make a request that will be reviewed and accepted by an administrator (avoiding inappropriate content or links, etc.)',
+        description: `Quality and safety are our top priorities.
+        Our dedicated moderation team reviews all submissions to maintain a safe, high-quality environment for all users.`,
         image: './images/Admin.png'
     },
-    '6': {
+    6: {
         title: 'Rich Metadata',
-        description: 'Detailed information at your fingertips. Access comprehensive metadata, ratings, chapter counts, author details, and community reviews.',
+        description: `Access comprehensive information for every webtoon.
+        Make informed decisions about what to read next with all the information you need at your fingertips.`,
         image: './images/Data.png'
     }
 };
 
-window.addEventListener('scroll', () => {
-    if (window.scrollY > 50) {
-        nav.classList.add('scrolled');
-    } else {
-        nav.classList.remove('scrolled');
+featureCards.forEach(card => {
+    card.addEventListener('click', () => {
+        const featureId = card.getAttribute('data-feature');
+        const details = featureDetails[featureId];
+
+        modalTitle.textContent = details.title;
+        modalDescription.textContent = details.description;
+        modalImage.src = details.image;
+        
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    });
+});
+
+modalClose.addEventListener('click', closeModal);
+modal.addEventListener('click', (e) => {
+    if (e.target === modal) {
+        closeModal();
     }
+});
+
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.classList.contains('active')) {
+        closeModal();
+    }
+});
+
+function closeModal() {
+    modal.classList.remove('active');
+    document.body.style.overflow = 'auto';
+}
+
+const ctaButtons = document.querySelectorAll('.cta-btn');
+const navBtn = document.querySelector('.nav-btn');
+
+ctaButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+        alert("website not accessible please re-try later")
+    });
+});
+
+if (navBtn) {
+    navBtn.addEventListener('click', () => {
+        window.location.href = '/signup';
+    });
+}
+
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            target.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+    });
 });
 
 const observerOptions = {
@@ -55,45 +142,15 @@ const observerOptions = {
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
-            entry.target.style.animation = 'fadeInUp 0.8s ease forwards';
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
         }
     });
 }, observerOptions);
 
-featureCards.forEach(card => {
+document.querySelectorAll('.feature-card').forEach((card, index) => {
     card.style.opacity = '0';
+    card.style.transform = 'translateY(30px)';
+    card.style.transition = `all 0.6s ease ${index * 0.1}s`;
     observer.observe(card);
-
-    card.addEventListener('click', () => {
-        const featureId = card.getAttribute('data-feature');
-        const data = featuresData[featureId];
-
-        modalTitle.textContent = data.title;
-        modalDescription.textContent = data.description;
-        modalImage.src = data.image;
-
-        modal.classList.add('active');
-        document.body.style.overflow = 'hidden';
-    });
-});
-
-modalClose.addEventListener('click', () => {
-    modal.classList.remove('active');
-    document.body.style.overflow = 'auto';
-});
-
-modal.addEventListener('click', (e) => {
-    if (e.target === modal) {
-        modal.classList.remove('active');
-        document.body.style.overflow = 'auto';
-    }
-});
-
-document.querySelectorAll('.cta-btn, .nav-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-        btn.style.transform = 'scale(0.95)';
-        setTimeout(() => {
-            btn.style.transform = '';
-        }, 200);
-    });
 });
