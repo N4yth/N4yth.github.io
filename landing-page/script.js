@@ -27,14 +27,12 @@ window.addEventListener('scroll', () => {
 
     lastScroll = currentScroll;
 });
-
 const modal = document.getElementById('modal');
 const modalTitle = document.getElementById('modalTitle');
 const modalDescription = document.getElementById('modalDescription');
 const modalImage = document.getElementById('modalImage');
 const modalClose = document.getElementById('modalClose');
 const featureCards = document.querySelectorAll('.feature-card');
-
 const featureDetails = {
     1: {
         title: 'Comprehensive Hub',
